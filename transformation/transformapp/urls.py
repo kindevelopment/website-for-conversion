@@ -4,5 +4,8 @@ from django.urls import path, include
 from transformapp.views import *
 
 urlpatterns = [
-    path('', TransformHome.as_view(), name='home')
+    path('', MainPage.as_view(), name='main'),
+    path('add-image/', TransformAdd.as_view(), name='form_add'),
+    path('register/', registerPage, name='register'),
+    path('login/', loginPage, name='login'),
 ]
