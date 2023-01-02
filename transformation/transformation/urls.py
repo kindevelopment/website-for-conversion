@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from transformapp.views import registerPage
+
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', registerPage, name='register'),
     path('admin/', admin.site.urls),
     path('', include('transformapp.urls'))
 ]

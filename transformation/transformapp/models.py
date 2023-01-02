@@ -6,8 +6,9 @@ from django.db import models
 class Image(models.Model):
     title = models.CharField('Название вашего изображения', max_length=30, blank=True)
     img = models.ImageField('Ваша фотография', )
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    prepopulated_fields = {"slug": ("title",)}
 
     class Meta:
         verbose_name = 'Изображение'
@@ -15,6 +16,7 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
+
 
 
 class Rate(models.Model):
