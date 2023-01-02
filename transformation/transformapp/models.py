@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.template.defaultfilters import slugify
 
 
 class Image(models.Model):
@@ -8,7 +9,6 @@ class Image(models.Model):
     img = models.ImageField('Ваша фотография', )
     slug = models.SlugField(unique=True, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-    prepopulated_fields = {"slug": ("title",)}
 
     class Meta:
         verbose_name = 'Изображение'
@@ -17,7 +17,10 @@ class Image(models.Model):
     def __str__(self):
         return self.title
 
-
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 class Rate(models.Model):
     name = models.CharField('Название тарифа', max_length=30)

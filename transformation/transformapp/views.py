@@ -1,9 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
-from slugify import slugify
-
 from transformapp.forms import ImageForm, CreateUserForm
 from transformapp.models import Image
 
