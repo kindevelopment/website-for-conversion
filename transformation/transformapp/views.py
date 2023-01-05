@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import ListView, CreateView
 from transformapp.forms import ImageForm, CreateUserForm
 from transformapp.models import Image
@@ -15,11 +16,12 @@ class TransformAdd(CreateView):
     template_name = 'transformapp/push_add.html'
 
     def form_valid(self, form):
-        form.instance.user = self.request.get_user_model()
+        form.instance.user = self.request.user
         form.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
-        return redirect('main')
+        return reverse('main')
 
 
 def registerPage(request):

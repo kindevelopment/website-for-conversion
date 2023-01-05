@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -18,9 +20,11 @@ class Image(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(f'{"_".join(str(self.img).split(".")[:-1])}_{now}')
         return super().save(*args, **kwargs)
+
 
 class Rate(models.Model):
     name = models.CharField('Название тарифа', max_length=30)
