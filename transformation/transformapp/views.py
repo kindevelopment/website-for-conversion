@@ -1,19 +1,20 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
-from transformapp.forms import ImageForm, CreateUserForm
-from transformapp.models import Image
+from transformapp.forms import ImageForm, CreateUserForm, AddRoomForm
+from transformapp.models import Image, Room
 
 
 class MainPage(ListView):
     model = Image
-    template_name = 'transformapp/base.html'
+    template_name = 'transformapp/index.html'
 
 
 class TransformAdd(CreateView):
     model = Image
     form_class = ImageForm
-    template_name = 'transformapp/push_add.html'
+    template_name = 'transformapp/add_image.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -32,8 +33,19 @@ def registerPage(request):
             form.save()
             return redirect('main')
     context = {'form': form}
-    return render(request, 'accounts/register.html', context)
+    return render(request, 'registration/register.html', context)
 
+class CreateRoom(LoginRequiredMixin, CreateView):
+    model = Room
+    form_class = AddRoomForm
+    template_name = 'transformapp/add_room.html'
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('main')
 
 

@@ -1,0 +1,20 @@
+{% extends 'transformapp/base.html' %}
+{% block content %}
+<section class="main">
+    <div class="main container  main__container-convert">
+        <div class="main__content">
+            <h2 class="main-title">Онлайн конвертер изображения</h2>
+            <p class="main-subtitle">Сконвертируйте в онлайне свои изображения</p>
+        </div>
+        <div class="main__convert">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="form-image__item">Отправить изображение</button>
+                <br>
+                {{ request.user.username }}
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,231 @@
+
+/*Обнуление*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 400;
+}
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+/* font-family: 'Open Sans', sans-serif;
+font-family: 'Oswald', sans-serif; */
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+html,
+body {
+	background-image: url('../img/back_image.png');
+	border: 0;
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.head {
+}
+
+.container {
+	max-width: 1170px;
+    background-color: #fbfbfb;
+	margin: 0 auto;
+}
+.head .container {
+	background-color: white;
+}
+
+.head__main {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: rgb(32, 32, 32);
+}
+.head__main-logo {
+	font-size: 24px;
+	font-weight: 700;
+	margin-left: 10px;
+}
+
+a.href_logo:active, /* активная/посещенная ссылка */
+a.href_logo:hover,  /* при наведении */
+a.href_logo {
+  text-decoration: none;
+  color: #666;
+}
+
+.head__main-logo::before {
+	content: "";
+	padding: 15px 30px;
+	background-image: url(../img/icon_logo.svg);
+	background-size: 55px;
+	background-repeat: no-repeat;
+}
+
+.head__main-list_menu {
+	display: flex;
+	text-transform: uppercase;
+	margin: 15px 0;
+}
+
+.list_menu_item, .list_menu_item_username {
+	margin-right: 35px;
+	font-size: 16px;
+	padding: 10px;
+}
+
+.list_menu_item:hover {
+	background-color: red;
+	border-radius: 5px;
+}
+
+.list_menu_item_username {
+	margin-right: 5px;
+}
+
+.main {
+	flex: 1 1 auto;
+}
+.main .container {
+	background-color: #fbfbfb
+}
+
+.main__content {
+	text-align: center;
+}
+
+.main-title {
+	padding-top: 60px;
+	color: red;
+	font-size: 30px;
+}
+
+.main-subtitle {
+	padding-top: 15px;
+	font-size: 16px;
+	padding-bottom: 80px;
+}
+
+
+.main__content-about_us {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+}
+
+.about_us-item {
+	margin: 40px 65px;
+	padding: 10px;
+}
+
+.about_us-item i {
+	color: rgb(215, 181, 55);
+	font-size: 40px;
+}
+
+.about_us-item_title {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	font-size: 17px;
+}
+
+.about_us-item_text {
+	color: rgb(134, 134, 134);
+	line-height: 20px;
+}
+
+.footer .container{
+	background-color: #282828;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+
+.footer__main_title {
+	color: rgb(134, 134, 134);
+	margin: 0 50px;
+	font-size: 16px;
+	text-align: center;
+	padding: 35px 0;
+}
+
+.main__convert {
+background: -webkit-linear-gradient(90deg,#b0a6a6,#ead1d1,#e6c1c1); /* Chrome 10-25, Safari 5.1-6 */ background: linear-gradient(90deg,#b0a6a6,#ead1d1,#e6c1c1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	padding: 130px 0;
+    text-align: center;
+   	font-size: 20px;
+}
+.main__container-convert {
+    height: 100vh;
+    background-color: #fbfbfb;
+}
+
+.login-page > .container {
+    background-color: #fbfbfb;
+    height: 100vh;
+}
+.login-page__form {
+    text-align: center;
+    padding: 200px 0;
+}
+
+.login__form {
+    background: -webkit-linear-gradient(90deg,#ffffff,#d6d8d8,#9b9b9b,#646464,#1a1a1a); /* Chrome 10-25, Safari 5.1-6 */ background: linear-gradient(90deg,#ffffff,#d6d8d8,#9b9b9b,#646464,#1a1a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+    padding: 25px 0;
+
+}
+
+.register_form {
+    background: -webkit-linear-gradient(90deg,#ffffff,#d6d8d8,#9b9b9b,#646464,#1a1a1a); /* Chrome 10-25, Safari 5.1-6 */ background: linear-gradient(90deg,#ffffff,#d6d8d8,#9b9b9b,#646464,#1a1a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 25px 0;
+}
+
+.form-image__item {
+    padding: 10px;
+    border: 1 black solid;
+    border-radius: 25px;
+    margin: 10px;
+}
+
+
+.main-add__room > .container{
+    height: 100vh;
+    text-align: center;
+}
+
+.add__room {
+    padding-top: 250px;
+}

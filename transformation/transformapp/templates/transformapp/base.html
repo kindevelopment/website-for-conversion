@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/fontello.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Конвертация</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="head">
+            <div class="head container">
+                <div class="head__main">
+                    <h3 class="head__main-logo"><a class="href_logo" href="{% url 'main' %}">Convert</a></h3>
+                    <div class="head__main-list_menu">
+                        <a href="{% url 'image_add' %}"  class="head__main list_menu_item">Конвертировать</a>
+                        <a href="{% url 'room_add' %}"  class="head__main list_menu_item">Создать комнату</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'logout' %}" class="head__main list_menu_item">Выйти</a>
+                            <p class="head__main list_menu_item_username">{{ user.username }}</p>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="head__main list_menu_item">Войти</a>
+                            <a href="{% url 'register' %}" class="head__main list_menu_item">Зарегистрироваться</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% block content %}
+
+        {% endblock content %}
+        <footer class="footer">
+            <div class="footer container">
+                <div class="footer__main">
+                    <p class="footer__main_title">Convert - Все права защищены и зарегистрированы 2020-2023.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

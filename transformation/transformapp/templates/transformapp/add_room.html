@@ -1,0 +1,16 @@
+{% extends 'transformapp/base.html' %}
+
+{% block content %}
+    <div class="main-add__room">
+        <div class="container">
+            <div class="add__room">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="form-image__item">Создать комнату</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

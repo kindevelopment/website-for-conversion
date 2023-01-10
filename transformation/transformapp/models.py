@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.template.defaultfilters import slugify
+from transliterate import slugify as trans_slugify
 
 
 class Image(models.Model):
@@ -22,7 +23,7 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
         now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         if not self.slug:
-            self.slug = slugify(f'{"_".join(str(self.img).split(".")[:-1])}_{now}')
+            self.slug = slugify(trans_slugify(f'{"_".join(str(self.img).split(".")[:-1])}_{now}'))
         return super().save(*args, **kwargs)
 
 
@@ -63,3 +64,9 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        if not self.slug:
+            self.slug = slugify(trans_slugify(f'{self.name}_{now}'))
+        return super().save(*args, **kwargs)

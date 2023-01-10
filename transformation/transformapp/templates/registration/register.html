@@ -1,0 +1,15 @@
+{% extends 'transformapp/base.html' %}
+{% block content %}
+<div class="login-page">
+    <div class="login-page container">
+        <div class="login-page__form">
+            <form action="" method="post" class="register_form">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input type="submit" name="Create_user">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
