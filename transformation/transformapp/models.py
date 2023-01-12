@@ -33,7 +33,6 @@ class Image(models.Model):
                 self.slug = slugify(trans_slugify(slug))
             else:
                 self.slug = slugify(slug)
-            self.img = transform(self.img)
         return super().save(*args, **kwargs)
 
 

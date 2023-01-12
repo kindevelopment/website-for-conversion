@@ -19,6 +19,7 @@ class TransformAdd(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.img = transform(form.cleaned_data['img'])
         form.save()
         return super().form_valid(form)
 

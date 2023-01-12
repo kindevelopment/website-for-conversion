@@ -9,5 +9,4 @@ def transform(file_image):
         sys.exit(1)
 
     image.save(file_image, 'png')
-    return image
 
