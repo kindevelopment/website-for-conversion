@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.generic import ListView, CreateView
 from transformapp.forms import ImageForm, CreateUserForm, AddRoomForm
 from transformapp.models import Image, Room
+from transformapp.tasks import transform
 
 
 class MainPage(ListView):
