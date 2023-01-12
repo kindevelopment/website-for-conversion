@@ -1,10 +1,12 @@
+import base64
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
 from transformapp.forms import ImageForm, CreateUserForm, AddRoomForm
 from transformapp.models import Image, Room
-from transformapp.tasks import transform
+from transformapp.tasks import get_image
 
 
 class MainPage(ListView):
@@ -18,8 +20,9 @@ class TransformAdd(CreateView):
     template_name = 'transformapp/add_image.html'
 
     def form_valid(self, form):
+        encoded_photo = base64.b64encode(form.cleaned_data['img'].read())
+        form.instance.img = get_image.delay(encoded_photo.decode('utf-8'))
         form.instance.user = self.request.user
-        form.instance.img = transform(form.cleaned_data['img'])
         form.save()
         return super().form_valid(form)
 

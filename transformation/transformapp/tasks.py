@@ -1,12 +1,8 @@
-from PIL import Image
-import sys
+from transformation.celery import app
 
-def transform(file_image):
-    try:
-        image = Image.open(file_image)
-    except IOError:
-        print("Unable to load image")
-        sys.exit(1)
+from .service import transform
 
-    image.save(file_image, 'png')
 
+@app.task
+def get_image(file_image):
+    transform(file_image)

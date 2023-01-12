@@ -7,7 +7,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from transliterate import slugify as trans_slugify
 
-from transformapp.tasks import transform
 
 
 class Image(models.Model):
