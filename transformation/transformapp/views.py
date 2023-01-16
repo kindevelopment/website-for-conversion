@@ -21,9 +21,11 @@ class TransformAdd(CreateView):
 
     def form_valid(self, form):
         encoded_photo = base64.b64encode(form.cleaned_data['img'].read())
-        form.instance.img = get_image.delay(encoded_photo.decode('utf-8'))
         form.instance.user = self.request.user
-        form.save()
+        form.instance.img = 'null'
+        form_save = form.save()
+        encod = encoded_photo.decode('utf-8')
+        get_image.delay(encod, form_save.id)
         return super().form_valid(form)
 
     def get_success_url(self):

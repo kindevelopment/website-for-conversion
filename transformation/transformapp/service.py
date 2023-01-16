@@ -5,12 +5,14 @@ from io import BytesIO
 from PIL import Image
 import sys
 
+from transformation.settings import MEDIA_ROOT
+from .models import Image as img_model
 from django.core.files import File
 
 
-def transform(file_image):
+def transform(file_image, form_save):
     try:
-        image = Image.open(io.BytesIO(base64.b64decode(file_image)))
+        image = Image.open(file_image)
     except IOError:
         print("Unable to load image")
         sys.exit(1)
@@ -18,4 +20,6 @@ def transform(file_image):
     image.save(png_io, 'png')
     name = ''.join(file_image.name.split('.')[:-1])
     img = File(png_io, name=f'{name}.png')
-    return img
+    result = img_model.objects.get(pk=form_save.id)
+    result.img = img
+    result.save()
