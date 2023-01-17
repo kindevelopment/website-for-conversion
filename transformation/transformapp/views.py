@@ -25,7 +25,7 @@ class TransformAdd(CreateView):
         form.instance.img = 'null'
         form_save = form.save()
         encod = encoded_photo.decode('utf-8')
-        get_image.delay(encod, form_save.id)
+        get_image.delay({'img': encod}, form_save.id)
         return super().form_valid(form)
 
     def get_success_url(self):

@@ -23,14 +23,7 @@ class Image(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        kiril = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-        if not self.slug:
-            slug = f'{"_".join(str(self.img).split(".")[:-1])}_{now}'
-            if set(str(self.img)) & set(kiril):
-                self.slug = slugify(trans_slugify(slug))
-            else:
-                self.slug = slugify(slug)
+
         return super().save(*args, **kwargs)
 
 
