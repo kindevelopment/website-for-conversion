@@ -11,7 +11,7 @@ from transliterate import slugify as trans_slugify
 class Image(models.Model):
     title = models.CharField('Название вашего изображения', max_length=30, blank=True)
     img = models.ImageField('Ваша фотография', null=True)
-    data_download = models.DateField(auto_now_add=True, null=True)
+    data_download = models.DateTimeField(auto_now_add=True, null=True)
     slug = models.SlugField(unique=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     session = models.TextField(blank=True, null=True)
@@ -22,8 +22,6 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
-
-
 
 
 class Rate(models.Model):

@@ -28,3 +28,13 @@ services:
       - redis
       - webapp
     command: 'celery -A transformation worker -l info'
+
+  celery-beat:
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+      - webapp
+    command: 'celery -A transformation beat -l info'
