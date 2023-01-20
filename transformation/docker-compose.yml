@@ -38,3 +38,16 @@ services:
       - redis
       - webapp
     command: 'celery -A transformation beat -l info'
+
+  flower:
+    restart: always
+    build: ./
+    volumes:
+      - ./:/app
+    ports:
+      - '5555:5555'
+    depends_on:
+      - worker
+      - redis
+    command: celery -A transformation flower
+

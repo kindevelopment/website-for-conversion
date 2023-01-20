@@ -11,7 +11,8 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'every': {
         'task': 'transformapp.tasks.deleted_file_task',
-        'schedule': crontab(minute=0, hour='*/2'),# по умолчанию выполняет каждую минуту, очень гибко
-    },                                                              # настраивается
+        'schedule': crontab(minute=0, hour='*/2'),
+    },
 
 }
+

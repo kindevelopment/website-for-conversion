@@ -1,5 +1,6 @@
 import base64
 import datetime
+import os
 import uuid
 from io import BytesIO
 
@@ -33,6 +34,7 @@ def del_file():
     list_del = img_model.objects.all()
     for item in list_del:
         if (item.data_download + datetime.timedelta(1)) < timezone.now():
+            item.img.delete(save=True)
             item.delete()
             print('Удалил изображение')
         else:
