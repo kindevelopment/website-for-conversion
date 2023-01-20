@@ -25,12 +25,6 @@ def transform(file_image, form_save):
     img = File(png_io, name=f'{name}.png')
     result = img_model.objects.get(pk=form_save)
     result.img = img
-    now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    kiril = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-    if not result.slug:
-        slug = f'{"_".join(str(result.img).split(".")[:-1])}_{now}'
-        if set(str(result.img)) & set(kiril):
-            result.slug = slugify(trans_slugify(slug))
-        else:
-            result.slug = slugify(slug)
+    slug = "_".join(str(result.img).split(".")[:-1])
+    result.slug = slugify(slug)
     result.save()

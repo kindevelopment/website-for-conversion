@@ -1,0 +1,22 @@
+{% extends 'transformapp/base.html' %}
+{% block content %}
+
+<section class="main">
+    <div class="main container  main__container-convert">
+        <div class="main__content">
+            <h2 class="main-title">Онлайн конвертер изображения</h2>
+            <p class="main-subtitle">Сконвертируйте в онлайне свои изображения</p>
+        </div>
+        <div class="main__convert">
+            <div class="list_file_flex">
+                {% for img in image_list %}
+            <div>
+                <img class="image_list_file" src="{{ img.img.url }}" alt="">
+            </div>
+        {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

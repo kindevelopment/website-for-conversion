@@ -18,11 +18,16 @@
                     <div class="head__main-list_menu">
                         <a href="{% url 'image_add' %}"  class="head__main list_menu_item">Конвертировать</a>
                         <a href="{% url 'room_add' %}"  class="head__main list_menu_item">Создать комнату</a>
+                        <a href="{% url 'download' %}"  class="head__main list_menu_item">Скачать изображение</a>
                         {% if user.is_authenticated %}
+
+
+                                        <!--request.path - делает redirect на ту страницу с которого была нажата ссылка-->
+
                             <a href="{% url 'logout' %}" class="head__main list_menu_item">Выйти</a>
                             <p class="head__main list_menu_item_username">{{ user.username }}</p>
                         {% else %}
-                            <a href="{% url 'login' %}" class="head__main list_menu_item">Войти</a>
+                            <a href="{% url 'login' %}?next={{request.path}}" class="head__main list_menu_item">Войти</a>
                             <a href="{% url 'register' %}" class="head__main list_menu_item">Зарегистрироваться</a>
                         {% endif %}
                     </div>

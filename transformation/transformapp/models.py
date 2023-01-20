@@ -14,6 +14,7 @@ class Image(models.Model):
     data_download = models.DateField(auto_now_add=True, null=True)
     slug = models.SlugField(unique=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    session = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'Изображение'
@@ -22,9 +23,7 @@ class Image(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
 
-        return super().save(*args, **kwargs)
 
 
 class Rate(models.Model):

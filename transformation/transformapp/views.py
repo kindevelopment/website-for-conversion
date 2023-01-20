@@ -1,4 +1,5 @@
 import base64
+import uuid
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -21,7 +22,12 @@ class TransformAdd(CreateView):
 
     def form_valid(self, form):
         encoded_photo = base64.b64encode(form.cleaned_data['img'].read())
-        form.instance.user = self.request.user
+        if self.request.user.is_authenticated:
+            form.instance.user = self.request.user
+        else:
+            if not self.request.session.get('nonuser'):
+                self.request.session['nonuser'] = str(uuid.uuid4())
+            form.instance.session = self.request.session['nonuser']
         form.instance.img = 'null'
         form_save = form.save()
         encod = encoded_photo.decode('utf-8')
@@ -31,6 +37,16 @@ class TransformAdd(CreateView):
     def get_success_url(self):
         return reverse('main')
 
+
+class ListFile(ListView):
+    model = Image
+    template_name = 'transformapp/list_file.html'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return Image.objects.filter(user=self.request.user)
+        else:
+            return Image.objects.filter(session=self.request.session.get('nonuser'))
 
 def registerPage(request):
     form = CreateUserForm()
