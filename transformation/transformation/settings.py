@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'transformapp',
 
+    'channels'
 ]
 
 MIDDLEWARE = [

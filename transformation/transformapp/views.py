@@ -41,6 +41,7 @@ class TransformAdd(CreateView):
 class ListFile(ListView):
     model = Image
     template_name = 'transformapp/list_file.html'
+    context_object_name = 'list_image'
 
     def get_queryset(self):
         if self.request.user.is_authenticated:

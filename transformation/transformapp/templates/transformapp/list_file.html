@@ -4,16 +4,24 @@
 <section class="main">
     <div class="main container  main__container-convert">
         <div class="main__content">
-            <h2 class="main-title">Онлайн конвертер изображения</h2>
-            <p class="main-subtitle">Сконвертируйте в онлайне свои изображения</p>
+            <h2 class="main-title">Сконвертированные файлы</h2>
+            <p class="main-subtitle">Файлы будут храниться в течении 24 часов</p>
         </div>
         <div class="main__convert">
-            <div class="list_file_flex">
-                {% for img in image_list %}
-            <div>
-                <img class="image_list_file" src="{{ img.img.url }}" alt="">
-            </div>
-        {% endfor %}
+            <div class="list_file-items">
+                {% for item in list_image %}
+                <div class="list_file-item">
+                    <div class="list_file-item_picture">
+                        <i class="icon-picture"></i>
+                        <p class="item_picture-name">{{item.img.name}}</p>
+                    </div>
+                    <div class="list_file-item_info">
+                        <p class="item_picture-format">PNG</p>
+                        <a href="{{ item.img.url }}" download class="item_picture-button_download">Скачать</a>
+                        <p class="item_picture-button_close">Удалить</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

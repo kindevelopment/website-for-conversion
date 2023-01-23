@@ -229,13 +229,23 @@ background: -webkit-linear-gradient(90deg,#b0a6a6,#ead1d1,#e6c1c1); /* Chrome 10
 .add__room {
     padding-top: 250px;
 }
-.list_file_flex {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 25px;
+
+.list_file-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 20px;
+    padding: 5px;
+    border-bottom: 1px solid black;
 }
 
-.image_list_file {
-    width: 150px;
-    height: 150px;
+.list_file-item_picture {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.list_file-item_info {
+    display: flex;
+    gap: 30px;
+    font-size: 16px;
 }
